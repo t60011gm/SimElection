@@ -490,6 +490,7 @@ export class Game {
   // ---------- 投開票 ----------
   async election() {
     this.over = true;
+    this.ui.update(this);
     this.ui.log('🗳️ <b>投票日到了！</b>開票中……');
     this.world.overview();
     const results = DIST_IDS.map((d) => {
