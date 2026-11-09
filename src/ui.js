@@ -2,7 +2,7 @@
 import { DISTRICTS, EVENT_TYPES, LEVEL_NAMES, RULES } from './data.js';
 
 const $ = (sel) => document.querySelector(sel);
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+import { sleep } from './speed.js';
 const fmt = (n) => n.toLocaleString('zh-TW');
 
 export class UI {

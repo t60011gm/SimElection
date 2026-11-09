@@ -8,7 +8,7 @@ import {
 } from './geo.js';
 
 const TILE_R = 2.1;
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+import { sleep, SPEED } from './speed.js';
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
 function seededRandom(seed) {
@@ -704,7 +704,7 @@ export class World {
   // ---------- 動畫迴圈 ----------
   #animate(duration, fn) {
     return new Promise((resolve) => {
-      this.animations.add({ start: performance.now(), duration, fn, resolve });
+      this.animations.add({ start: performance.now(), duration: duration / SPEED, fn, resolve });
     });
   }
 

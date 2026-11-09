@@ -10,6 +10,22 @@ npm run dev      # 開發伺服器 http://localhost:5173
 npm run build    # 輸出靜態檔到 dist/（可直接部署到 GitHub Pages 等靜態空間）
 ```
 
+## 測試
+
+```bash
+npm run test:unit   # 單元測試：遊戲規則與棋盤生成（Node 內建 test runner，不需瀏覽器）
+npm run test:e2e    # 端對端測試：用 Playwright 開瀏覽器自動玩完一局
+npm test            # 兩者都跑
+```
+
+第一次跑端對端測試前需安裝瀏覽器：`npx playwright install chromium`。
+網址加上 `?speed=8` 可加速動畫（測試時使用）。
+
+### GitHub Actions
+
+- **測試**（`.github/workflows/ci.yml`）：每次 push 或開 Pull Request 時自動建置並執行全部測試，結果在儲存庫的 **Actions** 分頁查看；失敗時可下載 `playwright-report` 截圖與報告。也可以在 Actions 分頁按 **Run workflow** 手動執行。
+- **部署**（`.github/workflows/pages.yml`）：推送到 `main` 時自動發布到 GitHub Pages。首次使用請到 **Settings → Pages**，將 Source 設為 **GitHub Actions**。
+
 ## 遊戲特色
 
 - **以台北市為參考的 3D 地圖**：依真實經緯度大略投影的市界、淡水河／新店溪／基隆河、陽明山等山丘、台北 101 與市政府模型，以及隨機生成的城市街廓。
@@ -54,6 +70,9 @@ src/scene.js      three.js 場景：地圖、格子、棋子、辦公室、骰�
 src/game.js       遊戲規則與回合流程、電腦對手邏輯
 src/ui.js         HUD、對話框、事件卡、開票畫面
 src/style.css     介面樣式
+src/speed.js      動畫速度倍率（?speed=N）
+tests/unit/       單元測試
+tests/e2e/        Playwright 端對端測試
 ```
 
 > 本遊戲中的候選人、政黨與事件皆為虛構；地圖與選民數僅為大略參考。

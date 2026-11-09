@@ -3,7 +3,7 @@ import {
   DISTRICTS, EVENT_TYPES, NEWS_CARDS, DEBATE_OPTIONS, RULES, LEVEL_NAMES,
 } from './data.js';
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+import { sleep } from './speed.js';
 const rand = (n) => Math.floor(Math.random() * n);
 const DIST_IDS = Object.keys(DISTRICTS);
 
