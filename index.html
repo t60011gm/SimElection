@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台北市長選戰 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- 開始畫面 -->
+  <div id="start-screen">
+    <div class="start-card">
+      <div class="title-sub">TAIPEI MAYOR RACE</div>
+      <h1>台北市長選戰 <span>3D</span></h1>
+      <p class="lead">走遍台北 12 個行政區，設立競選辦公室、舉辦造勢、搶攻民調，在投票日前贏得最多選票！</p>
+
+      <label>候選人姓名
+        <input id="in-name" maxlength="6" value="你" />
+      </label>
+
+      <div class="field">政黨顏色</div>
+      <div id="party-pick" class="party-pick"></div>
+
+      <div class="row2">
+        <label>對手人數
+          <select id="in-ai">
+            <option value="1">1 位</option>
+            <option value="2">2 位</option>
+            <option value="3" selected>3 位</option>
+          </select>
+        </label>
+        <label>選戰長度
+          <select id="in-rounds">
+            <option value="10">10 週（快速）</option>
+            <option value="15" selected>15 週（標準）</option>
+            <option value="20">20 週（長期）</option>
+          </select>
+        </label>
+      </div>
+
+      <button id="btn-start" class="btn primary big">開始競選 🗳️</button>
+
+      <details class="rules">
+        <summary>遊戲說明</summary>
+        <ul>
+          <li>輪到你時擲兩顆骰子，沿著環繞台北市的路線前進。</li>
+          <li><b>地標格</b>：花錢設立「競選辦公室」，提高該行政區聲量；再次停留可升級為後援會、造勢晚會、萬人大造勢。</li>
+          <li>辦公室每週都會自動累積該區聲量，等級越高越多。</li>
+          <li>停在<b>對手地盤</b>：支付反制文宣費，或讓對手拉走你的支持者。</li>
+          <li><b>事件格</b>：📰新聞事件、💰募款餐會、📊民調中心、🎤政見辯論會、📺媒體專訪、🚇捷運站、🚧交通管制。</li>
+          <li>擲骰前可花錢「投放廣告」指定一區拉抬聲量（每回合一次）。</li>
+          <li>經過台北市政府可領取政黨補助。</li>
+          <li>投票日依各區聲量比例開票，總得票最高者當選市長！</li>
+        </ul>
+        <p class="small">操作：滑鼠拖曳旋轉、右鍵平移、滾輪縮放；點擊格子查看資訊；空白鍵擲骰。</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" hidden>
+    <div id="top-left">
+      <div id="week"></div>
+      <div id="players"></div>
+    </div>
+
+    <div id="top-right">
+      <div class="cam-btns">
+        <button class="btn ghost sm" id="cam-follow" title="跟隨目前候選人">🎯 跟隨</button>
+        <button class="btn ghost sm" id="cam-overview" title="鳥瞰全台北">🗺️ 總覽</button>
+        <button class="btn ghost sm" id="toggle-panel" title="選區民調">📊 選區</button>
+      </div>
+      <div id="district-panel">
+        <h4>各區民調 <small>（依聲量比例）</small></h4>
+        <div id="district-list"></div>
+      </div>
+    </div>
+
+    <div id="log">
+      <h4>選戰快報</h4>
+      <ul id="log-list"></ul>
+    </div>
+
+    <div id="dice-result"></div>
+    <div id="action-bar"></div>
+    <div id="banner"></div>
+    <div id="tile-info"></div>
+    <button id="show-result" class="btn primary" hidden>📋 開票結果</button>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="election"></div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

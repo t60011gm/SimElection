@@ -1,0 +1,43 @@
+name: 測試
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 安裝套件
+        run: npm ci
+
+      - name: 建置
+        run: npm run build
+
+      - name: 單元測試（遊戲規則、棋盤）
+        run: npm run test:unit
+
+      - name: 安裝 Playwright 瀏覽器
+        run: npx playwright install --with-deps chromium
+
+      - name: 端對端測試（瀏覽器實際玩一局）
+        run: npm run test:e2e
+
+      - name: 上傳測試報告
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
