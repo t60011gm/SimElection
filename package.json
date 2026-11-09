@@ -1,0 +1,23 @@
+{
+  "name": "simelection",
+  "version": "1.0.0",
+  "description": "台北市長選戰 — three.js 3D 大富翁式市長競選模擬遊戲",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t60011gm/SimElection.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  }
+}
